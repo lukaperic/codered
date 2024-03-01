@@ -1,0 +1,28 @@
+<sly data-sly-use.model="com.mysite.core.models.AemPractice"
+     data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.css @ categories='components.aempractice'}"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"></sly>
+
+<h1>${model.title}</h1>
+
+<div data-sly-test="${model.canDisplayImage}">
+        <img
+          src="${model.imagePath}"
+          loading="eager"
+          class="image-border"
+          alt="Background image"
+          title="Background image"
+        />
+</div>
+
+<div>
+    <ul data-sly-list="${model.navigationItems}" data-sly-unwrap>
+        <li data-sly-test="${itemList.first}"><b><a href="${item.pagePath}">${item.pageTitle}</a></b></li>
+        <li data-sly-test="${itemList.last}" class="last-element"><i><a href="${item.pagePath}">${item.pageTitle}</a></i></li>
+        <li data-sly-test="${!itemList.first && !itemList.last}"><a href="${item.pagePath}">${item.pageTitle}</a> </li>
+    </ul>
+</div>
+
+<p data-sly-test="${model.environmentInAuthorMode}">Author mode</p>
+
+<p>${model.pageInfo}</p>
